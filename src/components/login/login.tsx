@@ -4,35 +4,25 @@ import { Container, Row } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
-import { useNavigate } from "react-router-dom";
 
-function Register() {
-  const navigate = useNavigate();
+function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const API_URL = "http://localhost:3001/register";
+  const API_URL = "http://localhost:3001/login";
 
-  const register = () => {
-    console.log("test");
+  const login = () => {
     const user = {
       username: username,
       password: password,
     };
-
     return axios.post(API_URL, user).then((response: any) => {
       console.log(response);
-      console.log(response.status);
-      if (response.status === 201) {
-        navigate("/login");
-        console.log(response);
-        console.log(response.status);
-      }
     });
   };
 
   return (
     <Container>
-      <h1>Register</h1>
+      <h1>Login</h1>
       <Form>
         <Container>
           <Row>
@@ -60,8 +50,8 @@ function Register() {
                   }}
                 />
               </Form.Group>
-              <Button variant="primary" onClick={register}>
-                Register
+              <Button variant="primary" onClick={login}>
+                Login
               </Button>
             </Col>
             <Col></Col>
@@ -72,4 +62,4 @@ function Register() {
   );
 }
 
-export default Register;
+export default Login;
